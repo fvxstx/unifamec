@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-navy antialiased;
+}
+
+::selection {
+  @apply bg-coral text-white;
+}
+
+.container-x {
+  @apply max-w-7xl mx-auto px-4 md:px-8;
+}
+
+/* Horizontal scroll carousel without visible scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
