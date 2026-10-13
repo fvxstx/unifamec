@@ -4,9 +4,9 @@ import { courseOptions, modalityOptions, specificCourseOptions } from "@/lib/dat
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradiente bg-cover bg-center">
-      <div className="container-x relative grid grid-cols-1 items-end gap-10 pt-28 pb-16 lg:grid-cols-2 lg:pt-36 lg:pb-0">
+      <div className="container-x relative grid grid-cols-1 items-end gap-10 pt-8 pb-26 lg:grid-cols-2 lg:pt-36 lg:pb-0">
         {/* Student photo */}
-        <div className="relative order-1 mx-auto h-[380px] w-full max-w-sm lg:order-1 lg:h-[720px] lg:max-w-none">
+        <div className="relative order-1 mx-auto w-full max-w-sm lg:order-1 lg:h-[920px] lg:max-w-none">
           <Image
             src="/images/man-hero.png"
             alt="Estudante da Unifamec sorrindo, vestindo jaqueta jeans"
@@ -149,7 +149,7 @@ export default function Hero() {
 
             <button
               type="submit"
-              className="mt-5 w-fit rounded-xl bg-coral py-3 text-sm font-extrabold text-white transition hover:opacity-90"
+              className="mt-5 w-fit rounded-xl bg-coral px-4 py-2 text-sm font-extrabold text-white transition hover:opacity-90"
             >
               Entrar em contato
             </button>

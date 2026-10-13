@@ -18,16 +18,16 @@ export default function Header() {
     <header className="absolute top-0 left-0 right-0 z-50">
       <div className="container-x flex items-center justify-between py-6">
         <Link href="/" className="font-display text-xl font-extrabold text-white tracking-tight">
-          <Image src="/logo.png" alt="Unifamec" width={100} height={100} />
+          <Image src="/logo.png" alt="Unifamec" width={1000} height={1000} className="w-64 h-auto" />
         </Link>
 
-        <div className="flex gap-4">
+        <div className="flex gap-6">
           <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link, index) => (
               <a
                 key={index}
                 href={link.href}
-                className={`text-lg font-medium text-white/90 hover:text-white transition-colors ${index === 0 ? "border-b-2 border-red-500 font-bold" : ""}`}
+                className={`text-lg font-medium text-white/90 hover:text-white transition-colors ${index == 0 ? "border-b-2 border-red-500 font-extrabold" : ""}`}
               >
                 {link.label}
               </a>
@@ -36,7 +36,7 @@ export default function Header() {
 
           <a
             href="#contato"
-            className="hidden md:inline-flex items-center rounded-full bg-coral px-10 py-2 text-lg font-bold text-white transition hover:opacity-90"
+            className="hidden md:inline-flex items-center rounded-full bg-coral px-11 py-1 text-lg font-semibold text-white transition hover:opacity-90"
           >
             Inscreva-se
           </a>

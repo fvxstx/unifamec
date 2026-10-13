@@ -18,6 +18,7 @@ const config: Config = {
           dark: "#C9273A",
         },
         offwhite: "#F5F6FA",
+        redDark: "#D32034"
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
@@ -28,7 +29,7 @@ const config: Config = {
       },
       backgroundImage: {
         gradiente: "url('/images/bg-gradiente.jpg')",
-        pattern: "url('/images/bg-pattern.jpg')",
+        pattern: "url('/images/bg-pattern.png')",
       },
       borderRadius: {
         "2xl": "1rem",

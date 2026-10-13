@@ -1,80 +1,138 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Instagram } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Bookmark,
+  Heart,
+  MessageCircle,
+  MoreVertical,
+  Send,
+} from "lucide-react";
 import { socialPosts } from "@/lib/data";
+
+const GAP = 28; // keep in sync with gap-7 (1.75rem)
 
 export default function SocialFeed() {
   const trackRef = useRef<HTMLDivElement>(null);
+  // indexes of the cards that are fully visible (the others get dimmed)
+  const [visible, setVisible] = useState<Set<number>>(new Set([0, 1, 2]));
+
+  useEffect(() => {
+    const root = trackRef.current;
+    if (!root) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        setVisible((prev) => {
+          const next = new Set(prev);
+          entries.forEach((e) => {
+            const idx = Number((e.target as HTMLElement).dataset.index);
+            if (e.intersectionRatio >= 0.95) next.add(idx);
+            else next.delete(idx);
+          });
+          return next;
+        });
+      },
+      { root, threshold: [0, 0.5, 0.95, 1] },
+    );
+
+    root.querySelectorAll("[data-card]").forEach((c) => io.observe(c));
+    return () => io.disconnect();
+  }, []);
 
   const scrollBy = (dir: 1 | -1) => {
     const el = trackRef.current;
     if (!el) return;
     const card = el.querySelector("[data-card]") as HTMLElement | null;
-    const amount = card ? card.offsetWidth + 20 : 300;
+    const amount = card ? card.offsetWidth + GAP : 300;
     el.scrollBy({ left: dir * amount, behavior: "smooth" });
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradiente bg-cover bg-center py-16 md:py-24">
-      <div className="absolute inset-0 bg-navy-deep/85" />
-
+    <section className="relative overflow-hidden bg-gradiente bg-cover bg-center py-16 md:py-20">
       <div className="container-x relative">
-        <div className="text-center">
-          <h2 className="font-display text-3xl font-extrabold text-white sm:text-4xl md:text-5xl">
-            Acompanhe a <span className="text-coral">Unifamec</span>
-          </h2>
-          <p className="mt-3 text-sm text-white/70 md:text-base">
-            Nos siga nas redes sociais!
-          </p>
-        </div>
+        <h2 className="max-w-md font-sans text-4xl font-black leading-tight text-white sm:text-6xl">
+          Acompanhe a Unifamec
+        </h2>
+        <p className="mt-3 text-xl font-medium text-white">
+          Nos siga nas redes sociais!
+        </p>
+      </div>
 
+      {/* FULL-WIDTH CAROUSEL */}
+      <div className="relative mt-10">
         <div
           ref={trackRef}
-          className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2"
+          className="no-scrollbar flex snap-x snap-mandatory scroll-px-6 gap-7 overflow-x-auto py-2 md:scroll-px-16"
         >
           {socialPosts.map((post, i) => (
-            <div
+            <article
               key={i}
               data-card
-              className="relative h-80 w-[75%] flex-shrink-0 snap-center overflow-hidden rounded-3xl sm:w-[340px]"
+              data-index={i}
+              className={`w-[300px] flex-shrink-0 snap-start overflow-hidden rounded-xl bg-white shadow-lg transition-opacity duration-300 first:ml-6 last:mr-6 sm:w-[320px] md:w-[350px] md:first:ml-16 md:last:mr-16 ${
+                visible.has(i) ? "opacity-100" : "opacity-50"
+              }`}
             >
-              <Image
-                src={post.image}
-                alt={`Post do Instagram ${post.handle}`}
-                fill
-                className="object-cover"
-                sizes="340px"
-              />
-              <div className="absolute inset-x-0 top-0 flex items-center gap-2 bg-gradient-to-b from-black/60 to-transparent p-4">
-                <Instagram className="h-5 w-5 text-white" />
-                <span className="text-sm font-semibold text-white">
-                  {post.handle}
-                </span>
+              {/* header */}
+              <header className="flex items-center justify-between px-3 py-2">
+                <div className="flex items-center gap-2">
+                  <span className="rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-fuchsia-600 p-[2px]">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-navy text-[9px] font-bold text-white">
+                      <img src={"/logo.png"} alt={post.handle} />
+                    </span>
+                  </span>
+                  <span className="text-[11px] font-bold text-black">
+                    {post.handle}
+                  </span>
+                </div>
+                <MoreVertical size={14} className="text-black" />
+              </header>
+
+              {/* square photo */}
+              <div className="relative aspect-square w-full">
+                <Image
+                  src={post.image}
+                  alt={`Post do Instagram ${post.handle}`}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 280px, 260px"
+                />
               </div>
-            </div>
+
+              {/* footer actions */}
+              <footer className="flex items-center justify-between px-3 py-2.5 text-black">
+                <div className="flex items-center gap-3">
+                  <Heart size={16} />
+                  <MessageCircle size={16} />
+                  <Send size={16} />
+                </div>
+                <Bookmark size={16} />
+              </footer>
+            </article>
           ))}
         </div>
 
-        <div className="mt-8 flex justify-center gap-4">
-          <button
-            type="button"
-            aria-label="Post anterior"
-            onClick={() => scrollBy(-1)}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-white transition hover:bg-white/10"
-          >
-            <ArrowLeft size={18} />
-          </button>
-          <button
-            type="button"
-            aria-label="Próximo post"
-            onClick={() => scrollBy(1)}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-white transition hover:bg-white/10"
-          >
-            <ArrowRight size={18} />
-          </button>
-        </div>
+        {/* ARROWS (red squares over the edges) */}
+        <button
+          type="button"
+          aria-label="Post anterior"
+          onClick={() => scrollBy(-1)}
+          className="absolute left-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg bg-redDark text-white shadow-md transition hover:brightness-110 md:left-6"
+        >
+          <ArrowLeft size={18} />
+        </button>
+        <button
+          type="button"
+          aria-label="Próximo post"
+          onClick={() => scrollBy(1)}
+          className="absolute right-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg bg-redDark text-white shadow-md transition hover:brightness-110 md:right-6"
+        >
+          <ArrowRight size={18} />
+        </button>
       </div>
     </section>
   );

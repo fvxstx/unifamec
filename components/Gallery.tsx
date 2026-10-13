@@ -1,47 +1,40 @@
 import Image from "next/image";
 import { galleryItems } from "@/lib/data";
 
-// alternate portrait/landscape aspect ratios to create the mosaic feel
-const spanPattern = [
-  "aspect-[4/5]",
-  "aspect-square",
-  "aspect-[4/5]",
-  "aspect-square",
-  "aspect-[4/5]",
-  "aspect-square",
-  "aspect-[4/5]",
-  "aspect-square",
-  "aspect-[4/5]",
-];
-
 export default function Gallery() {
   return (
-    <section className="bg-navy py-16 md:py-24">
-      <div className="container-x">
-        <h2 className="font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl">
-          <span className="text-coral">Memórias</span> que criamos juntos!
-        </h2>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/70 md:text-base">
-          Momentos de aprendizado, conquista e amizade que fazem parte da
-          trajetória de quem estuda na Unifamec.
-        </p>
+    <section className="container-x relative z-10 mt-36">
+      <h2 className="max-w-md font-sans text-3xl font-black leading-tight text-navy sm:text-4xl md:text-5xl">
+        Memórias que criamos juntos!
+      </h2>
+      <p className="mt-4 max-w-xl text-lg font-semibold leading-relaxed text-navy">
+        Uma estrutura completa, com ambientes modernos e espaços preparados para
+        você aprender na prática, desenvolver suas
+      </p>
 
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-5">
-          {galleryItems.map((item, i) => (
+      {/* GALLERY GRID */}
+      <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-x-4 gap-y-4 md:mt-20 md:grid-cols-3 md:gap-x-8">
+        {galleryItems.slice(0, 9).map((item, i) => {
+          // middle column (2nd of every row on desktop) is shifted up
+          const isMiddle = i % 3 === 1;
+
+          return (
             <div
-              key={item.image}
-              className={`relative overflow-hidden rounded-3xl ${spanPattern[i % spanPattern.length]}`}
+              key={`${item.image}-${i}`}
+              className={`relative aspect-square overflow-hidden rounded-3xl ${
+                isMiddle ? "md:-translate-y-8" : ""
+              }`}
             >
               <Image
                 src={item.image}
                 alt={item.alt}
                 fill
                 className="object-cover"
-                sizes="(min-width: 768px) 30vw, 45vw"
+                sizes="(min-width: 768px) 30vw, 50vw"
               />
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </section>
   );

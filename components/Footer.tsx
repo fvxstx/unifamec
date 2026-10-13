@@ -1,77 +1,113 @@
-import { Phone, MessageCircle, Mail, Instagram, Facebook } from "lucide-react";
+import {
+  PiInstagramLogoBold,
+  PiLinkedinLogoBold,
+  PiWhatsappLogoBold,
+} from "react-icons/pi";
+
+const socials = [
+  { label: "WhatsApp", href: "#", Icon: PiWhatsappLogoBold },
+  { label: "Instagram", href: "#", Icon: PiInstagramLogoBold },
+  { label: "LinkedIn", href: "#", Icon: PiLinkedinLogoBold },
+];
+
+const courses = [
+  { label: "Cursos de Graduação", href: "#" },
+  { label: "Cursos de Pós Graduação", href: "#" },
+  { label: "Cursos Técnicos", href: "#" },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-deep pt-16 pb-8 text-white">
-      <div className="container-x">
-        <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
-          <div className="lg:max-w-xs">
-            <p className="font-display text-xl font-extrabold">Unifamec</p>
+    <footer className="font-sans text-white">
+      {/* MAIN AREA */}
+      <div className="bg-[#1f2a3a] px-6 py-10 lg:px-10 lg:pb-12 lg:pt-12">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[14rem_1.6fr_1fr_1.4fr_auto] lg:gap-x-8">
+          {/* Logo */}
+          <div className="flex items-start lg:items-center">
+            <img
+              src="/logo-blue.png"
+              alt="Centro Universitário UniFamec"
+              className="h-auto w-[180px] max-w-full lg:w-[200px]"
+            />
           </div>
 
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 lg:flex-1 lg:gap-8">
-            <div>
-              <h3 className="text-sm font-semibold text-white/60">Endereço</h3>
-              <p className="mt-4 max-w-[220px] text-sm leading-relaxed text-white/85">
-                Avenida Jorge Amado, s/nº, bairro Ponto Certo, Camaçari,
-                Bahia, CEP 42.800-121
-              </p>
-            </div>
+          {/* Endereço */}
+          <div>
+            <h3 className="font-display text-base font-bold lg:text-lg">
+              Endereço
+            </h3>
+            <p className="mt-1 max-w-[20rem] text-xs leading-relaxed lg:text-[13px]">
+              Avenida Jorge Amado, s/nº, no bairro Ponto Certo, Camaçari,
+              Bahia, CEP 42.800-121
+            </p>
+          </div>
 
-            <div>
-              <h3 className="text-sm font-semibold text-white/60">
-                Nossos Cursos
-              </h3>
-              <ul className="mt-4 space-y-2 text-sm text-white/85">
-                <li>Cursos de Graduação</li>
-                <li>Cursos de Pós-Graduação</li>
-                <li>Cursos Técnicos</li>
-              </ul>
-            </div>
+          {/* Nossos Cursos */}
+          <div>
+            <h3 className="font-display text-base font-bold lg:text-lg">
+              Nossos Cursos
+            </h3>
+            <ul className="mt-2 text-xs leading-relaxed lg:text-[13px]">
+              {courses.map((c) => (
+                <li key={c.label}>
+                  <a href={c.href} className="underline hover:opacity-80">
+                    {c.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div>
-              <h3 className="text-sm font-semibold text-white/60">Contato</h3>
-              <ul className="mt-4 space-y-3 text-sm text-white/85">
-                <li className="flex items-center gap-2">
-                  <Phone size={16} className="text-coral" />
-                  1111-1111
-                </li>
-                <li className="flex items-center gap-2">
-                  <MessageCircle size={16} className="text-coral" />
-                  (11) 9999-9999
-                </li>
-                <li className="flex items-center gap-2">
-                  <Mail size={16} className="text-coral" />
+          {/* Contato */}
+          <div>
+            <h3 className="font-display text-base font-bold lg:text-lg">
+              Contato
+            </h3>
+            <ul className="mt-1 text-xs leading-relaxed lg:text-[13px]">
+              <li>
+                <strong className="font-bold">Telefone</strong>: 1111-111
+              </li>
+              <li>
+                <strong className="font-bold">WhatsApp</strong>: (11)
+                9999-99999
+              </li>
+              <li>
+                <strong className="font-bold">e-mail</strong>:{" "}
+                <a
+                  href="mailto:contato@unifamec.edu.br"
+                  className="hover:underline"
+                >
                   contato@unifamec.edu.br
-                </li>
-              </ul>
-            </div>
+                </a>
+              </li>
+            </ul>
           </div>
 
-          <div className="flex gap-4 lg:items-start">
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:bg-white/10"
-            >
-              <Instagram size={18} />
-            </a>
-            <a
-              href="#"
-              aria-label="Facebook"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:bg-white/10"
-            >
-              <Facebook size={18} />
-            </a>
+          {/* Redes Sociais */}
+          <div>
+            <h3 className="font-display text-base font-bold lg:text-lg">
+              Redes Sociais
+            </h3>
+            <div className="mt-2 flex items-center gap-3">
+              {socials.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="transition hover:opacity-80"
+                >
+                  <Icon size={26} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
+      </div>
 
-        <hr className="my-10 border-white/10" />
-
-        <p className="text-center text-xs leading-relaxed text-white/50">
-          © 2026 Unifamec. Todos os direitos reservados. Proibida a
-          reprodução total ou parcial deste site sem autorização prévia.
-        </p>
+      {/* COPYRIGHT BAR */}
+      <div className="bg-[#00095e] px-4 py-1.5 text-center text-[11px] leading-snug sm:text-xs">
+        © 2026 Unifamec. Todos os direitos reservados. Proibida a reprodução
+        total ou parcial deste site sem autorização prévia.
       </div>
     </footer>
   );

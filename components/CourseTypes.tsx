@@ -1,27 +1,38 @@
 import Image from "next/image";
 import { ChevronRight, GraduationCap } from "lucide-react";
 import { courseTypes } from "@/lib/data";
+import { noiseStyle } from "@/utils/noise";
+
 
 export default function CourseTypes() {
   return (
-    <section id="cursos" className="py-16 md:py-24 bg-gradiente bg-cover bg-center">
-      <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+    <section id="cursos" className="relative py-16 md:py-24 bg-pattern bg-cover bg-center">
+      <div className="absolute inset-0 bg-white/10 backdrop-blur-[3px]"></div>
+
+      {/* Noise on the background only (sits below the content, which is z-10) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={noiseStyle}
+      />
+
+      <div className="relative z-10 container-x grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <h2 className="font-display text-5xl font-extrabold leading-tight text-navy sm:text-4xl md:text-5xl">
-            Escolha o curso que
+          <h2 className="max-w-md font-display text-5xl font-bold leading-tight text-navy sm:text-4xl md:text-5xl">
+            Escolha o curso
             <br />
-            combina com o seu futuro
+             que combina com o seu futuro
           </h2>
 
-          <ul className="mt-10 flex flex-col divide-y divide-navy/10">
+          <ul className="mt-16 flex flex-col gap-4">
             {courseTypes.map((course) => (
               <li key={course.title} className="flex gap-4 py-6 first:pt-0">
                 <GraduationCap className="mt-1 h-6 w-6 flex-shrink-0 text-navy" />
                 <div>
-                  <h3 className="font-display text-3xl font-bold text-navy">
+                  <h3 className="font-display text-4xl font-medium text-navy">
                     {course.title}
                   </h3>
-                  <p className="mt-1 max-w-md text-lg leading-relaxed text-navy">
+                  <p className="mt-3 max-w-sm text-xl leading-relaxed text-navy relative right-9">
                     {course.description}
                   </p>
                 </div>
@@ -30,13 +41,20 @@ export default function CourseTypes() {
           </ul>
         </div>
 
-        <div className="relative h-[320px] w-full overflow-hidden rounded-3xl sm:h-[420px] lg:h-auto">
+        <div className="relative h-[420px] w-full overflow-hidden rounded-3xl sm:h-[520px] lg:h-auto">
           <Image
-            src="/section-1.png"
+            src="/images/section-1.jpg"
             alt="Estudantes caminhando no corredor da faculdade"
             fill
             className="object-cover"
             sizes="(min-width: 1024px) 45vw, 90vw"
+          />
+
+          {/* Noise on the photo only */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            style={noiseStyle}
           />
         </div>
       </div>
