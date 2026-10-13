@@ -13,11 +13,11 @@ const tileClasses = [
 export default function CampusExperience() {
   return (
     <section className="container-x relative z-10">
-      <h2 className="max-w-2xl font-sans text-4xl font-bold leading-tight text-navy sm:text-5xl md:text-6xl">
+      <h2 className="max-w-2xl font-sans text-4xl font-bold leading-tight text-navy max-md:text-3xl sm:text-5xl md:text-6xl">
         Sua Universidade <span className="text-redDark"> Vai Além</span> da sala
         de aula.
       </h2>
-      <p className="mt-4 max-w-xl font-medium text-redDark text-xl leading-tight">
+      <p className="mt-4 max-w-xl font-medium text-redDark text-xl leading-tight max-md:text-base">
         Uma estrutura completa, com ambientes modernos e espaços preparados para
         você aprender na prática, desenvolver suas habilidades e viver cada
         etapa da sua jornada universitária.

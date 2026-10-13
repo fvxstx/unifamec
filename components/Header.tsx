@@ -15,10 +15,10 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50">
-      <div className="container-x flex items-center justify-between py-6">
+    <header className="absolute top-0 left-0 right-0 z-50 max-md:relative max-md:bg-navy">
+      <div className="container-x flex items-center justify-between py-4 md:py-6">
         <Link href="/" className="font-display text-xl font-extrabold text-white tracking-tight">
-          <Image src="/logo.png" alt="Unifamec" width={1000} height={1000} className="w-64 h-auto" />
+          <Image src="/logo-blue.png" alt="Unifamec" width={1000} height={1000} className="h-auto w-64 max-md:w-40" />
         </Link>
 
         <div className="flex gap-6">
@@ -44,8 +44,9 @@ export default function Header() {
         
         <button
           type="button"
-          aria-label="Abrir menu"
-          className="md:hidden text-white"
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={open}
+          className="flex h-10 w-10 items-center justify-center rounded-full text-white transition hover:bg-white/10 md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={28} /> : <Menu size={28} />}
@@ -53,7 +54,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-navy/95 backdrop-blur px-4 pb-6 pt-2">
+        <div className="border-t border-white/10 bg-navy px-4 pb-6 pt-4 md:hidden">
           <nav className="flex flex-col gap-4">
             {navLinks.map((link, index) => (
               <a

@@ -3,17 +3,17 @@ import { galleryItems } from "@/lib/data";
 
 export default function Gallery() {
   return (
-    <section className="container-x relative z-10 mt-36">
+    <section className="container-x relative z-10 mt-36 max-md:mt-20">
       <h2 className="max-w-md font-sans text-3xl font-black leading-tight text-navy sm:text-4xl md:text-5xl">
         Memórias que criamos juntos!
       </h2>
-      <p className="mt-4 max-w-xl text-lg font-semibold leading-relaxed text-navy">
+      <p className="mt-4 max-w-xl text-lg font-semibold leading-relaxed text-navy max-md:text-base">
         Uma estrutura completa, com ambientes modernos e espaços preparados para
         você aprender na prática, desenvolver suas
       </p>
 
       {/* GALLERY GRID */}
-      <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-x-4 gap-y-4 md:mt-20 md:grid-cols-3 md:gap-x-8">
+      <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-x-3 gap-y-3 max-md:mt-10 md:mt-20 md:grid-cols-3 md:gap-x-8">
         {galleryItems.slice(0, 9).map((item, i) => {
           // middle column (2nd of every row on desktop) is shifted up
           const isMiddle = i % 3 === 1;

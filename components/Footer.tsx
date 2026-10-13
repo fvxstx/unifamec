@@ -75,7 +75,7 @@ export default function Footer() {
                 <strong className="font-bold">e-mail</strong>:{" "}
                 <a
                   href="mailto:contato@unifamec.edu.br"
-                  className="hover:underline"
+                  className="hover:underline max-md:break-all"
                 >
                   contato@unifamec.edu.br
                 </a>

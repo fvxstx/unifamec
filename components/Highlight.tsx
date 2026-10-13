@@ -32,18 +32,18 @@ export default function Highlight() {
     <section id="experiencia" className="bg-gradiente bg-cover bg-center w-full h-full">
       {banners.map((banner, i) => (
         <div key={i} className="">
-          <div className="container-x grid grid-cols-1 items-center gap-10 py-10 md:py-14 lg:grid-cols-2">
+          <div className="container-x grid grid-cols-1 items-center gap-10 py-10 max-md:gap-6 md:py-14 lg:grid-cols-2">
             <div
               className={`max-w-md ${
                 banner.imageOnRight ? "order-2 lg:order-1" : "order-2 lg:order-2 sm:ml-14"
               }`}
             >
-              <h3 className="font-display text-3xl font-bold leading-tight text-white sm:text-5xl">
+              <h3 className="font-display text-3xl font-bold leading-tight text-white max-md:text-2xl sm:text-5xl">
                 {banner.titleParts[0]}
                 <span className="text-coral">{banner.titleParts[1]}</span>
                 {banner.titleParts[2]}
               </h3>
-              <p className="mt-4 max-w-[350px] text-white/70">
+              <p className="mt-4 max-w-[350px] text-white/70 max-md:text-sm">
                 The expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dog
               </p>
               <a
@@ -56,7 +56,7 @@ export default function Highlight() {
 
             {/* Outer wrapper: no overflow-hidden, so the white frame can stick out */}
             <div
-              className={`relative h-[280px] w-full sm:h-[360px] ${
+              className={`relative h-[280px] w-full max-md:h-56 sm:h-[360px] ${
                 banner.imageOnRight ? "order-1 lg:order-2" : "order-1 lg:order-1"
               }`}
             >

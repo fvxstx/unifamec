@@ -18,21 +18,21 @@ export default function CourseTypes() {
 
       <div className="relative z-10 container-x grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <h2 className="max-w-md font-display text-5xl font-bold leading-tight text-navy sm:text-4xl md:text-5xl">
+          <h2 className="max-w-md font-display text-5xl font-bold leading-tight text-navy max-md:text-3xl sm:text-4xl md:text-5xl">
             Escolha o curso
             <br />
              que combina com o seu futuro
           </h2>
 
-          <ul className="mt-16 flex flex-col gap-4">
+          <ul className="mt-16 flex flex-col gap-4 max-md:mt-10">
             {courseTypes.map((course) => (
               <li key={course.title} className="flex gap-4 py-6 first:pt-0">
                 <GraduationCap className="mt-1 h-6 w-6 flex-shrink-0 text-navy" />
                 <div>
-                  <h3 className="font-display text-4xl font-medium text-navy">
+                  <h3 className="font-display text-4xl font-medium text-navy max-md:text-2xl">
                     {course.title}
                   </h3>
-                  <p className="mt-3 max-w-sm text-xl leading-relaxed text-navy relative right-9">
+                  <p className="relative right-9 mt-3 max-w-sm text-xl leading-relaxed text-navy max-md:right-0 max-md:text-base">
                     {course.description}
                   </p>
                 </div>
@@ -41,7 +41,7 @@ export default function CourseTypes() {
           </ul>
         </div>
 
-        <div className="relative h-[420px] w-full overflow-hidden rounded-3xl sm:h-[520px] lg:h-auto">
+        <div className="relative h-[420px] w-full overflow-hidden rounded-3xl max-md:h-64 sm:h-[520px] lg:h-auto">
           <Image
             src="/images/section-1.jpg"
             alt="Estudantes caminhando no corredor da faculdade"

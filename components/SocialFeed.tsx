@@ -54,7 +54,7 @@ export default function SocialFeed() {
   return (
     <section className="relative overflow-hidden bg-gradiente bg-cover bg-center py-16 md:py-20">
       <div className="container-x relative">
-        <h2 className="max-w-md font-sans text-4xl font-black leading-tight text-white sm:text-6xl">
+        <h2 className="max-w-md font-sans text-4xl font-black leading-tight text-white max-md:text-3xl sm:text-6xl">
           Acompanhe a Unifamec
         </h2>
         <p className="mt-3 text-xl font-medium text-white">
@@ -73,7 +73,7 @@ export default function SocialFeed() {
               key={i}
               data-card
               data-index={i}
-              className={`w-[300px] flex-shrink-0 snap-start overflow-hidden rounded-xl bg-white shadow-lg transition-opacity duration-300 first:ml-6 last:mr-6 sm:w-[320px] md:w-[350px] md:first:ml-16 md:last:mr-16 ${
+              className={`w-[min(82vw,300px)] flex-shrink-0 snap-start overflow-hidden rounded-xl bg-white shadow-lg transition-opacity duration-300 first:ml-6 last:mr-6 sm:w-[320px] md:w-[350px] md:first:ml-16 md:last:mr-16 ${
                 visible.has(i) ? "opacity-100" : "opacity-50"
               }`}
             >
@@ -82,7 +82,7 @@ export default function SocialFeed() {
                 <div className="flex items-center gap-2">
                   <span className="rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-fuchsia-600 p-[2px]">
                     <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-navy text-[9px] font-bold text-white">
-                      <img src={"/logo.png"} alt={post.handle} />
+                      <img src={"/logo.png"} alt={post.handle} className="h-full w-full rounded-full object-cover" />
                     </span>
                   </span>
                   <span className="text-[11px] font-bold text-black">
