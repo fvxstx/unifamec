@@ -6,8 +6,8 @@ import { noiseStyle } from "@/utils/noise";
 
 export default function CourseTypes() {
   return (
-    <section id="cursos" className="relative py-16 md:py-24 bg-pattern bg-cover bg-center">
-      <div className="absolute inset-0 bg-white/10 backdrop-blur-[3px]"></div>
+    <section id="cursos" className="relative py-16 md:py-24 bg-pattern bg-[length:max(100%,1800px)_auto] bg-center bg-no-repeat">
+      <div className="absolute inset-0 bg-[#F4F4F6]/75 backdrop-blur-[2px]"></div>
 
       {/* Noise on the background only (sits below the content, which is z-10) */}
       <div

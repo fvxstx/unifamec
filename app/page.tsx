@@ -18,8 +18,8 @@ export default function Home() {
         <Highlight />
 
         {/* Background */}
-        <div className="relative bg-pattern bg-contain bg-center py-16 md:py-24">
-          <div className="absolute inset-0 bg-white/10 backdrop-blur-[3px]"></div>
+        <div className="relative bg-pattern bg-cover bg-center bg-no-repeat py-16 md:py-24">
+          <div className="absolute inset-0 bg-[#F4F4F6]/75 backdrop-blur-[2px]"></div>
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
