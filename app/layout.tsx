@@ -31,7 +31,7 @@ export default function RootLayout({
       <head>
         {/* Without JS the scroll-reveal never fires, so show everything */}
         <noscript>
-          <style>{`.reveal,.reveal.reveal-clip-up>*,.reveal .reveal-child{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}`}</style>
+          <style>{`.reveal,.reveal.reveal-clip-up>*,.reveal .reveal-child{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}.page-loader{display:none!important}`}</style>
         </noscript>
       </head>
       <body>{children}</body>

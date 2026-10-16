@@ -6,11 +6,13 @@ import CampusExperience from "@/components/CampusExperience";
 import Gallery from "@/components/Gallery";
 import SocialFeed from "@/components/SocialFeed";
 import Footer from "@/components/Footer";
+import PageLoader from "@/components/PageLoader";
 import { noiseStyle } from "@/utils/noise";
 
 export default function Home() {
   return (
     <>
+      <PageLoader />
       <Header />
       <main>
         <Hero />

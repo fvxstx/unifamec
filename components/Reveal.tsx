@@ -8,6 +8,7 @@ import {
   type ElementType,
   type ReactNode,
 } from "react";
+import { onPageReady } from "@/utils/pageReady";
 
 export type RevealVariant =
   | "fade-up"
@@ -56,20 +57,28 @@ export default function Reveal({
       return;
     }
 
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          if (once) io.disconnect();
-        } else if (!once) {
-          setVisible(false);
-        }
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
-    );
+    let io: IntersectionObserver | undefined;
 
-    io.observe(el);
-    return () => io.disconnect();
+    // Wait for the PageLoader to finish so animations aren't hidden behind it
+    const unsubscribe = onPageReady(() => {
+      io = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            if (once) io?.disconnect();
+          } else if (!once) {
+            setVisible(false);
+          }
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+      );
+      io.observe(el);
+    });
+
+    return () => {
+      unsubscribe();
+      io?.disconnect();
+    };
   }, [once]);
 
   const style = {
