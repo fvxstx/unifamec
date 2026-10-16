@@ -29,7 +29,8 @@ export default function Gallery() {
               key={`${item.image}-${i}`}
               variant="fade-up"
               delay={(i % 3) * 120}
-              className="relative hover:z-10"
+              // 2-col grid on mobile: hide the 9th tile so rows stay even
+              className={`relative hover:z-10 ${i === 8 ? "max-md:hidden" : ""}`}
             >
               <div
                 className={`relative aspect-square overflow-hidden rounded-3xl transition-transform duration-300 ease-out hover:scale-110 ${
