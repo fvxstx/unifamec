@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { courseOptions, modalityOptions, specificCourseOptions } from "@/lib/data";
 import Reveal from "@/components/Reveal";
+import PhoneInput from "@/components/PhoneInput";
 
 export default function Hero() {
   return (
@@ -120,10 +121,9 @@ export default function Hero() {
                 <label className="sr-only" htmlFor="telefone">
                   Telefone
                 </label>
-                <input
+                <PhoneInput
                   id="telefone"
                   name="telefone"
-                  type="tel"
                   required
                   placeholder="Telefone *"
                   className="w-full rounded-lg border-none font-medium bg-[#EAE9F6] px-4 py-3 text-sm text-navy  focus:border-coral focus:outline-none focus:ring-1 focus:ring-coral"
