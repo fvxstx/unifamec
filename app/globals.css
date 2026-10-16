@@ -26,3 +26,70 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ---------- Scroll reveal animations (see components/Reveal.tsx) ---------- */
+.reveal {
+  opacity: 0;
+  transition-property: opacity, transform, filter, clip-path;
+  transition-duration: var(--reveal-duration, 800ms);
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal-fade-up { transform: translate3d(0, 48px, 0); }
+.reveal-fade-down { transform: translate3d(0, -48px, 0); }
+.reveal-fade-left { transform: translate3d(64px, 0, 0); }
+.reveal-fade-right { transform: translate3d(-64px, 0, 0); }
+.reveal-zoom-in { transform: scale(0.9); }
+.reveal-blur-up { transform: translate3d(0, 24px, 0); filter: blur(12px); }
+.reveal-clip-up { opacity: 1; }
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Images inside a reveal settle from a slight zoom (Ken Burns style) */
+.reveal .reveal-media {
+  transform: scale(1.15);
+  transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible .reveal-media {
+  transform: scale(1);
+}
+
+/* Clip the children, not the observed element itself: a fully clipped
+   target never reports as intersecting, so it would never be revealed. */
+.reveal.reveal-clip-up > * {
+  clip-path: inset(100% 0 0 0);
+  transition:
+    clip-path var(--reveal-duration, 800ms) cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    transform 1.6s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+}
+.reveal.reveal-clip-up.is-visible > * {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Header drops in on page load */
+@keyframes header-in {
+  from { opacity: 0; transform: translate3d(0, -100%, 0); }
+  to { opacity: 1; transform: none; }
+}
+.animate-header-in {
+  animation: header-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal .reveal-media,
+  .reveal.reveal-clip-up > *,
+  .animate-header-in {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

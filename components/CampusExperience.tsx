@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { beyondItems } from "@/lib/data";
 import { noiseStyle } from "@/utils/noise";
+import Reveal from "@/components/Reveal";
 
 const tileClasses = [
   "col-span-2 md:col-span-1", // 1 – top left (wide)
@@ -13,15 +14,19 @@ const tileClasses = [
 export default function CampusExperience() {
   return (
     <section className="container-x relative z-10">
-      <h2 className="max-w-2xl font-sans text-4xl font-bold leading-tight text-navy max-md:text-3xl sm:text-5xl md:text-6xl">
-        Sua Universidade <span className="text-redDark"> Vai Além</span> da sala
-        de aula.
-      </h2>
-      <p className="mt-4 max-w-xl font-medium text-redDark text-xl leading-tight max-md:text-base">
-        Uma estrutura completa, com ambientes modernos e espaços preparados para
-        você aprender na prática, desenvolver suas habilidades e viver cada
-        etapa da sua jornada universitária.
-      </p>
+      <Reveal variant="fade-up">
+        <h2 className="max-w-2xl font-sans text-4xl font-bold leading-tight text-navy max-md:text-3xl sm:text-5xl md:text-6xl">
+          Sua Universidade <span className="text-redDark"> Vai Além</span> da sala
+          de aula.
+        </h2>
+      </Reveal>
+      <Reveal variant="fade-up" delay={150}>
+        <p className="mt-4 max-w-xl font-medium text-redDark text-xl leading-tight max-md:text-base">
+          Uma estrutura completa, com ambientes modernos e espaços preparados para
+          você aprender na prática, desenvolver suas habilidades e viver cada
+          etapa da sua jornada universitária.
+        </p>
+      </Reveal>
 
       {/* IMAGE DIV */}
       <div className="mt-10 grid grid-cols-2 auto-rows-[11rem] gap-3 sm:auto-rows-[20rem] md:grid-cols-[7fr_3fr_3fr] md:gap-3">
@@ -30,6 +35,7 @@ export default function CampusExperience() {
             key={`${item.label}-${i}`}
             item={item}
             priority={i === 0}
+            delay={i * 120}
             className={tileClasses[i]}
           />
         ))}
@@ -42,13 +48,17 @@ function BentoImage({
   item,
   className,
   priority = false,
+  delay = 0,
 }: {
   item: { image: string; label: string; alt: string };
   className?: string;
   priority?: boolean;
+  delay?: number;
 }) {
   return (
-    <div
+    <Reveal
+      variant="zoom-in"
+      delay={delay}
       className={`relative overflow-hidden rounded-3xl shadow-sm ${className ?? ""}`}
     >
       <Image
@@ -56,7 +66,7 @@ function BentoImage({
         alt={item.alt}
         fill
         priority={priority}
-        className="object-cover"
+        className="reveal-media object-cover"
         sizes="(min-width: 768px) 50vw, 100vw"
       />
 
@@ -67,10 +77,15 @@ function BentoImage({
         style={noiseStyle}
       />
 
-      {/* White pill label */}
-      <span className="absolute bottom-3 left-3 rounded-xl bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-wide text-navy shadow-sm sm:bottom-4 sm:left-4 sm:text-xs">
+      {/* White pill label — slides up after the tile appears */}
+      <Reveal
+        as="span"
+        variant="fade-up"
+        delay={delay + 400}
+        className="absolute bottom-3 left-3 rounded-xl bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-wide text-navy shadow-sm sm:bottom-4 sm:left-4 sm:text-xs"
+      >
         {item.label}
-      </span>
-    </div>
+      </Reveal>
+    </Reveal>
   );
 }

@@ -3,6 +3,7 @@ import {
   PiLinkedinLogoBold,
   PiWhatsappLogoBold,
 } from "react-icons/pi";
+import Reveal from "@/components/Reveal";
 
 const socials = [
   { label: "WhatsApp", href: "#", Icon: PiWhatsappLogoBold },
@@ -23,16 +24,16 @@ export default function Footer() {
       <div className="bg-[#1f2a3a] px-6 py-10 lg:px-10 lg:pb-12 lg:pt-12">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[14rem_1.6fr_1fr_1.4fr_auto] lg:gap-x-8">
           {/* Logo */}
-          <div className="flex items-start lg:items-center">
+          <Reveal variant="fade-up" className="flex items-start lg:items-center">
             <img
               src="/logo-blue.png"
               alt="Centro Universitário UniFamec"
               className="h-auto w-[180px] max-w-full lg:w-[200px]"
             />
-          </div>
+          </Reveal>
 
           {/* Endereço */}
-          <div>
+          <Reveal variant="fade-up" delay={100}>
             <h3 className="font-display text-base font-bold lg:text-lg">
               Endereço
             </h3>
@@ -40,10 +41,10 @@ export default function Footer() {
               Avenida Jorge Amado, s/nº, no bairro Ponto Certo, Camaçari,
               Bahia, CEP 42.800-121
             </p>
-          </div>
+          </Reveal>
 
           {/* Nossos Cursos */}
-          <div>
+          <Reveal variant="fade-up" delay={200}>
             <h3 className="font-display text-base font-bold lg:text-lg">
               Nossos Cursos
             </h3>
@@ -56,10 +57,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
           {/* Contato */}
-          <div>
+          <Reveal variant="fade-up" delay={300}>
             <h3 className="font-display text-base font-bold lg:text-lg">
               Contato
             </h3>
@@ -81,10 +82,10 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
+          </Reveal>
 
           {/* Redes Sociais */}
-          <div>
+          <Reveal variant="fade-up" delay={400}>
             <h3 className="font-display text-base font-bold lg:text-lg">
               Redes Sociais
             </h3>
@@ -100,7 +101,7 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
 

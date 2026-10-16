@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ChevronRight, GraduationCap } from "lucide-react";
 import { courseTypes } from "@/lib/data";
 import { noiseStyle } from "@/utils/noise";
+import Reveal from "@/components/Reveal";
 
 
 export default function CourseTypes() {
@@ -18,15 +19,23 @@ export default function CourseTypes() {
 
       <div className="relative z-10 container-x grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <h2 className="max-w-md font-display text-5xl font-bold leading-tight text-navy max-md:text-3xl sm:text-4xl md:text-5xl">
-            Escolha o curso
-            <br />
-             que combina com o seu futuro
-          </h2>
+          <Reveal variant="fade-up">
+            <h2 className="max-w-md font-display text-5xl font-bold leading-tight text-navy max-md:text-3xl sm:text-4xl md:text-5xl">
+              Escolha o curso
+              <br />
+               que combina com o seu futuro
+            </h2>
+          </Reveal>
 
           <ul className="mt-16 flex flex-col gap-4 max-md:mt-10">
-            {courseTypes.map((course) => (
-              <li key={course.title} className="flex gap-4 py-6 first:pt-0">
+            {courseTypes.map((course, i) => (
+              <Reveal
+                as="li"
+                key={course.title}
+                variant="fade-right"
+                delay={150 + i * 150}
+                className="flex gap-4 py-6 first:pt-0"
+              >
                 <GraduationCap className="mt-1 h-6 w-6 flex-shrink-0 text-navy" />
                 <div>
                   <h3 className="font-display text-4xl font-medium text-navy max-md:text-2xl">
@@ -36,17 +45,22 @@ export default function CourseTypes() {
                     {course.description}
                   </p>
                 </div>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
 
-        <div className="relative h-[420px] w-full overflow-hidden rounded-3xl max-md:h-64 sm:h-[520px] lg:h-auto">
+        <Reveal
+          variant="clip-up"
+          duration={1200}
+          delay={200}
+          className="relative h-[420px] w-full overflow-hidden rounded-3xl max-md:h-64 sm:h-[520px] lg:h-auto"
+        >
           <Image
             src="/images/section-1.jpg"
             alt="Estudantes caminhando no corredor da faculdade"
             fill
-            className="object-cover"
+            className="reveal-media object-cover"
             sizes="(min-width: 1024px) 45vw, 90vw"
           />
 
@@ -56,7 +70,7 @@ export default function CourseTypes() {
             className="pointer-events-none absolute inset-0"
             style={noiseStyle}
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );

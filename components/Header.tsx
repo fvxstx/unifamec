@@ -15,7 +15,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 max-md:relative max-md:bg-navy">
+    <header className="animate-header-in absolute top-0 left-0 right-0 z-50 max-md:relative max-md:bg-navy">
       <div className="container-x flex items-center justify-between py-4 md:py-6">
         <Link href="/" className="font-display text-xl font-extrabold text-white tracking-tight">
           <Image src="/logo-blue.png" alt="Unifamec" width={1000} height={1000} className="h-auto w-64 max-md:w-40" />

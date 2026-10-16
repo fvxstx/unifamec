@@ -28,6 +28,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${archivo.variable} ${inter.variable} `}>
+      <head>
+        {/* Without JS the scroll-reveal never fires, so show everything */}
+        <noscript>
+          <style>{`.reveal,.reveal.reveal-clip-up>*{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}`}</style>
+        </noscript>
+      </head>
       <body>{children}</body>
     </html>
   );

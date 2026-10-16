@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "@/components/Reveal";
 
 type Banner = {
   image: string;
@@ -33,36 +34,46 @@ export default function Highlight() {
       {banners.map((banner, i) => (
         <div key={i} className="">
           <div className="container-x grid grid-cols-1 items-center gap-10 py-10 max-md:gap-6 md:py-14 lg:grid-cols-2">
+            {/* Text slides in from the side opposite the photo */}
             <div
               className={`max-w-md ${
                 banner.imageOnRight ? "order-2 lg:order-1" : "order-2 lg:order-2 sm:ml-14"
               }`}
             >
-              <h3 className="font-display text-3xl font-bold leading-tight text-white max-md:text-2xl sm:text-5xl">
-                {banner.titleParts[0]}
-                <span className="text-coral">{banner.titleParts[1]}</span>
-                {banner.titleParts[2]}
-              </h3>
-              <p className="mt-4 max-w-[350px] text-white/70 max-md:text-sm">
-                The expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dog
-              </p>
-              <a
-                href="#contato"
-                className="mt-6 inline-flex items-center rounded-2xl bg-coral px-12 py-1.5 text-lg font-semibold text-white transition hover:opacity-90"
-              >
-                Submit
-              </a>
+              <Reveal variant={banner.imageOnRight ? "fade-right" : "fade-left"}>
+                <h3 className="font-display text-3xl font-bold leading-tight text-white max-md:text-2xl sm:text-5xl">
+                  {banner.titleParts[0]}
+                  <span className="text-coral">{banner.titleParts[1]}</span>
+                  {banner.titleParts[2]}
+                </h3>
+              </Reveal>
+              <Reveal variant={banner.imageOnRight ? "fade-right" : "fade-left"} delay={150}>
+                <p className="mt-4 max-w-[350px] text-white/70 max-md:text-sm">
+                  The expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dogThe expeditious brown fox jumps over the lazy dog
+                </p>
+              </Reveal>
+              <Reveal variant="fade-up" delay={300}>
+                <a
+                  href="#contato"
+                  className="mt-6 inline-flex items-center rounded-2xl bg-coral px-12 py-1.5 text-lg font-semibold text-white transition hover:opacity-90"
+                >
+                  Submit
+                </a>
+              </Reveal>
             </div>
 
             {/* Outer wrapper: no overflow-hidden, so the white frame can stick out */}
-            <div
+            <Reveal
+              variant={banner.imageOnRight ? "fade-left" : "fade-right"}
+              duration={1000}
               className={`relative h-[280px] w-full max-md:h-56 sm:h-[360px] ${
                 banner.imageOnRight ? "order-1 lg:order-2" : "order-1 lg:order-1"
               }`}
             >
-              {/* White frame behind the photo */}
-              <div
-                aria-hidden="true"
+              {/* White frame behind the photo — pops out after the photo lands */}
+              <Reveal
+                variant="zoom-in"
+                delay={450}
                 className={`absolute rounded-3xl bg-white ${banner.frame}`}
               />
 
@@ -72,11 +83,11 @@ export default function Highlight() {
                   src={banner.image}
                   alt={banner.alt}
                   fill
-                  className="object-cover"
+                  className="reveal-media object-cover"
                   sizes="(min-width: 1024px) 45vw, 90vw"
                 />
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       ))}

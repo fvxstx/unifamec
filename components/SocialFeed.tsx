@@ -12,6 +12,7 @@ import {
   Send,
 } from "lucide-react";
 import { socialPosts } from "@/lib/data";
+import Reveal from "@/components/Reveal";
 
 const GAP = 28; // keep in sync with gap-7 (1.75rem)
 
@@ -54,16 +55,26 @@ export default function SocialFeed() {
   return (
     <section className="relative overflow-hidden bg-gradiente bg-cover bg-center py-16 md:py-20">
       <div className="container-x relative">
-        <h2 className="max-w-md font-sans text-4xl font-black leading-tight text-white max-md:text-3xl sm:text-6xl">
-          Acompanhe a Unifamec
-        </h2>
-        <p className="mt-3 text-xl font-medium text-white">
-          Nos siga nas redes sociais!
-        </p>
+        <Reveal variant="fade-up">
+          <h2 className="max-w-md font-sans text-4xl font-black leading-tight text-white max-md:text-3xl sm:text-6xl">
+            Acompanhe a Unifamec
+          </h2>
+        </Reveal>
+        <Reveal variant="fade-up" delay={150}>
+          <p className="mt-3 text-xl font-medium text-white">
+            Nos siga nas redes sociais!
+          </p>
+        </Reveal>
       </div>
 
-      {/* CAROUSEL: full-width on mobile, exactly 3 cards visible from md up */}
-      <div className="relative mt-10 md:mx-auto md:max-w-7xl md:px-8">
+      {/* CAROUSEL: full-width on mobile, exactly 3 cards visible from md up.
+          Slides in from the right, like a feed being swiped in. */}
+      <Reveal
+        variant="fade-left"
+        delay={250}
+        duration={1000}
+        className="relative mt-10 md:mx-auto md:max-w-7xl md:px-8"
+      >
         <div
           ref={trackRef}
           className="no-scrollbar flex snap-x snap-mandatory scroll-px-6 gap-7 overflow-x-auto py-2 md:scroll-px-0"
@@ -133,7 +144,7 @@ export default function SocialFeed() {
         >
           <ArrowRight size={18} />
         </button>
-      </div>
+      </Reveal>
     </section>
   );
 }
