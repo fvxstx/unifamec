@@ -62,18 +62,18 @@ export default function SocialFeed() {
         </p>
       </div>
 
-      {/* FULL-WIDTH CAROUSEL */}
-      <div className="relative mt-10">
+      {/* CAROUSEL: full-width on mobile, exactly 3 cards visible from md up */}
+      <div className="relative mt-10 md:mx-auto md:max-w-7xl md:px-8">
         <div
           ref={trackRef}
-          className="no-scrollbar flex snap-x snap-mandatory scroll-px-6 gap-7 overflow-x-auto py-2 md:scroll-px-16"
+          className="no-scrollbar flex snap-x snap-mandatory scroll-px-6 gap-7 overflow-x-auto py-2 md:scroll-px-0"
         >
           {socialPosts.map((post, i) => (
             <article
               key={i}
               data-card
               data-index={i}
-              className={`w-[min(82vw,300px)] flex-shrink-0 snap-start overflow-hidden rounded-xl bg-white shadow-lg transition-opacity duration-300 first:ml-6 last:mr-6 sm:w-[320px] md:w-[350px] md:first:ml-16 md:last:mr-16 ${
+              className={`w-[min(82vw,300px)] flex-shrink-0 snap-start overflow-hidden rounded-xl bg-white shadow-lg transition-opacity duration-300 first:ml-6 last:mr-6 sm:w-[320px] md:w-[calc((100%-56px)/3)] md:first:ml-0 md:last:mr-0 ${
                 visible.has(i) ? "opacity-100" : "opacity-50"
               }`}
             >
@@ -99,7 +99,7 @@ export default function SocialFeed() {
                   alt={`Post do Instagram ${post.handle}`}
                   fill
                   className="object-cover"
-                  sizes="(min-width: 768px) 280px, 260px"
+                  sizes="(min-width: 768px) 400px, 320px"
                 />
               </div>
 
@@ -121,7 +121,7 @@ export default function SocialFeed() {
           type="button"
           aria-label="Post anterior"
           onClick={() => scrollBy(-1)}
-          className="absolute left-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg bg-redDark text-white shadow-md transition hover:brightness-110 md:left-6"
+          className="absolute left-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg bg-redDark text-white shadow-md transition hover:brightness-110 md:left-1"
         >
           <ArrowLeft size={18} />
         </button>
@@ -129,7 +129,7 @@ export default function SocialFeed() {
           type="button"
           aria-label="Próximo post"
           onClick={() => scrollBy(1)}
-          className="absolute right-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg bg-redDark text-white shadow-md transition hover:brightness-110 md:right-6"
+          className="absolute right-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg bg-redDark text-white shadow-md transition hover:brightness-110 md:right-1"
         >
           <ArrowRight size={18} />
         </button>
