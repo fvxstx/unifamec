@@ -15,13 +15,12 @@ export default function Gallery() {
       {/* GALLERY GRID */}
       <div className="mx-auto mt-16 grid max-w-5xl grid-cols-2 gap-x-3 gap-y-3 max-md:mt-10 md:mt-20 md:grid-cols-3 md:gap-x-8">
         {galleryItems.slice(0, 9).map((item, i) => {
-          // middle column (2nd of every row on desktop) is shifted up
           const isMiddle = i % 3 === 1;
 
           return (
             <div
               key={`${item.image}-${i}`}
-              className={`relative aspect-square overflow-hidden rounded-3xl ${
+              className={`relative aspect-square overflow-hidden rounded-3xl transition-transform duration-300 ease-out hover:z-10 hover:scale-110 ${
                 isMiddle ? "md:-translate-y-8" : ""
               }`}
             >
