@@ -6,6 +6,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Prevent sideways page scroll from off-screen animations/decorations.
+   `clip` (unlike `hidden`) doesn't create a scroll container, so sticky still works. */
+html,
+body {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
 body {
   @apply bg-white text-navy font-sans antialiased;
 }
