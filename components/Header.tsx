@@ -27,7 +27,7 @@ export default function Header() {
               <a
                 key={index}
                 href={link.href}
-                className={`text-lg font-medium text-white/90 hover:text-white transition-colors ${index == 0 ? "border-b-2 border-red-500 font-extrabold" : ""}`}
+                className={`text-lg font-medium text-white/90 hover:text-white transition-colors hover:border-b-2 hover:border-red-500 hover:font-extrabold`}
               >
                 {link.label}
               </a>
