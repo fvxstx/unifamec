@@ -77,15 +77,10 @@ function BentoImage({
         style={noiseStyle}
       />
 
-      {/* White pill label — slides up after the tile appears */}
-      <Reveal
-        as="span"
-        variant="fade-up"
-        delay={delay + 400}
-        className="absolute bottom-3 left-3 rounded-xl bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-wide text-navy shadow-sm sm:bottom-4 sm:left-4 sm:text-xs"
-      >
+      {/* White pill label — slides up after the tile appears (driven by the tile's Reveal) */}
+      <span className="reveal-child absolute bottom-3 left-3 rounded-xl bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-wide text-navy shadow-sm sm:bottom-4 sm:left-4 sm:text-xs">
         {item.label}
-      </Reveal>
+      </span>
     </Reveal>
   );
 }
