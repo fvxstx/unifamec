@@ -16,9 +16,32 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://unifamec.vercel.app"),
   title: "Unifamec | Sua escolha começa aqui",
   description:
     "Graduações, Graduação Tecnológica e Pós-Graduação na Unifamec. Inscreva-se e comece a construir o futuro que você quer.",
+  openGraph: {
+    title: "Unifamec | Sua escolha começa aqui",
+    description:
+      "Graduações, Graduação Tecnológica e Pós-Graduação na Unifamec. Inscreva-se e comece a construir o futuro que você quer.",
+    url: "https://unifamec.vercel.app",
+    siteName: "Unifamec",
+    locale: "pt_BR",
+    type: "website",
+    images: [
+      {
+        url: "/images/banner.png",
+        alt: "Unifamec",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Unifamec | Sua escolha começa aqui",
+    description:
+      "Graduações, Graduação Tecnológica e Pós-Graduação na Unifamec. Inscreva-se e comece a construir o futuro que você quer.",
+    images: ["/images/banner.png"],
+  },
 };
 
 export default function RootLayout({
