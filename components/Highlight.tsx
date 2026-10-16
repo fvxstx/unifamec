@@ -48,7 +48,7 @@ export default function Highlight() {
               </p>
               <a
                 href="#contato"
-                className="mt-6 inline-flex items-center rounded-2xl bg-coral px-12 py-1.5 text-sm font-semibold text-white transition hover:opacity-90"
+                className="mt-6 inline-flex items-center rounded-2xl bg-coral px-12 py-1.5 text-lg font-semibold text-white transition hover:opacity-90"
               >
                 Submit
               </a>
