@@ -77,14 +77,14 @@ export default function SocialFeed() {
       >
         <div
           ref={trackRef}
-          className="no-scrollbar flex snap-x snap-mandatory scroll-px-6 gap-7 overflow-x-auto py-2 md:scroll-px-0"
+          className="no-scrollbar flex snap-x snap-mandatory gap-7 overflow-x-auto py-2"
         >
           {socialPosts.map((post, i) => (
             <article
               key={i}
               data-card
               data-index={i}
-              className={`w-[min(82vw,300px)] flex-shrink-0 snap-start overflow-hidden rounded-xl bg-white shadow-lg transition-opacity duration-300 first:ml-6 last:mr-6 sm:w-[320px] md:w-[calc((100%-56px)/3)] md:first:ml-0 md:last:mr-0 ${
+              className={`w-[min(72vw,320px)] flex-shrink-0 snap-center overflow-hidden rounded-xl bg-white shadow-lg transition-opacity duration-300 first:ml-[calc(50%_-_min(36vw,160px))] last:mr-[calc(50%_-_min(36vw,160px))] md:w-[calc((100%-56px)/3)] md:snap-start md:first:ml-0 md:last:mr-0 ${
                 visible.has(i) ? "opacity-100" : "opacity-50"
               }`}
             >
