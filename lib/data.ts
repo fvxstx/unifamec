@@ -84,3 +84,33 @@ export const specificCourseOptions = [
   "Pedagogia",
   "Psicologia",
 ];
+
+export type IngressOption = {
+  title: string;
+  description: string;
+  href: string;
+};
+
+export type IngressTab = {
+  label: string;
+  options: IngressOption[];
+};
+
+export const ingressTabs: IngressTab[] = [
+  {
+    label: "Medicina",
+    options: [
+      { title: "ENEM", description: "Use sua nota do ENEM para concorrer", href: "#" },
+      { title: "FIES", description: "Financiamento estudantil do governo federal", href: "#" },
+      { title: "ProUni", description: "Bolsas de estudo de 50% ou 100%", href: "#" },
+    ],
+  },
+  {
+    label: "Demais Cursos",
+    options: [
+      { title: "ENEM", description: "Use sua nota do ENEM para concorrer", href: "#" },
+      { title: "FIES", description: "Financiamento estudantil do governo federal", href: "#" },
+      { title: "ProUni", description: "Bolsas de estudo de 50% ou 100%", href: "#" },
+    ],
+  },
+];
